@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.acollider.numberkeyboardview.CalculatorView;
+
 
 public class MainActivity extends ActionBarActivity {
 

@@ -1,4 +1,4 @@
-package com.acollider.calculator;
+package com.acollider.numberkeyboardview;
 
 import android.content.Context;
 import android.view.Gravity;
