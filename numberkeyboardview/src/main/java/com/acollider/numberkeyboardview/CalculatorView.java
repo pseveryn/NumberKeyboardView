@@ -99,7 +99,7 @@ public class CalculatorView extends FrameLayout{
     };
 
     private void performInput(String input){
-        if (input.equals(separator)&&workingWithIntegers){
+        if (input.equals(separator)){
             workingWithIntegers = false;
         } else if (input.equals("Backsp")){
             performBacksp();
