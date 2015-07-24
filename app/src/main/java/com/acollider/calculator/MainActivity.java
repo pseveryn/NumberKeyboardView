@@ -17,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CalculatorView calculatorView = new CalculatorView(this);
-        calculatorView.setShowSpaces(true);
+        calculatorView.build();
 
         FrameLayout contentView = (FrameLayout)findViewById(R.id.content_view);
         contentView.addView(calculatorView);

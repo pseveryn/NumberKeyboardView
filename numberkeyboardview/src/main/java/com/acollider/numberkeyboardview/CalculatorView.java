@@ -26,10 +26,15 @@ public class CalculatorView extends FrameLayout{
     private int buttonsTextSize = 26;
     private int numberLengthLimit = 9;
     private boolean showSpaces = false;
+    private boolean showDividers = false;
 
     public CalculatorView(Context context) {
         super(context);
         this.context = context;
+
+    }
+
+    public void build(){
         initKeyboard();
     }
 
@@ -37,11 +42,13 @@ public class CalculatorView extends FrameLayout{
         View mainView =((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.calculator_layout, this);
         tvDisplay = (TextView)mainView.findViewById(R.id.display);
         tvDisplay.setTextSize(displayTextSize);
+
         LinearLayout keyBoardView1Row = (LinearLayout)mainView.findViewById(R.id.keyboard_1row);
         LinearLayout keyBoardView2Row = (LinearLayout)mainView.findViewById(R.id.keyboard_2row);
         LinearLayout keyBoardView3Row = (LinearLayout)mainView.findViewById(R.id.keyboard_3row);
         LinearLayout keyBoardView4Row = (LinearLayout)mainView.findViewById(R.id.keyboard_4row);
         LinearLayout[] rows = new LinearLayout[]{keyBoardView1Row,keyBoardView2Row,keyBoardView3Row,keyBoardView4Row};
+
         int rowIndex = 0;
         int j = 0;
         for (int i=0; i<values.length-1; i++){
@@ -53,6 +60,9 @@ public class CalculatorView extends FrameLayout{
             btn.setGravity(Gravity.CENTER);
             btn.setText(values[i]);
             btn.setTag(values[i]);
+            if (showDividers){
+                btn.setBackgroundResource(R.drawable.rectangle);
+            }
             btn.setOnClickListener(clickListener);
             rows[rowIndex].addView(btn);
             j++;
@@ -62,14 +72,22 @@ public class CalculatorView extends FrameLayout{
             }
         }
 
-        ImageView baksp = new ImageView(context);
+        FrameLayout fl = new FrameLayout(context);
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         params.weight=(float)0.33;
+        fl.setLayoutParams(params);
+        if (showDividers){
+            fl.setBackgroundResource(R.drawable.rectangle);
+        }
+        keyBoardView4Row.addView(fl);
+
+        ImageView baksp = new ImageView(context);
+        params = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         baksp.setLayoutParams(params);
-        baksp.setImageResource(R.mipmap.backspace);
+        baksp.setImageResource(R.drawable.ic_action_backspace);
         baksp.setTag(values[11]);
         baksp.setOnClickListener(clickListener);
-        keyBoardView4Row.addView(baksp);
+        fl.addView(baksp);
     }
 
     private View.OnClickListener clickListener = new OnClickListener() {
@@ -226,5 +244,13 @@ public class CalculatorView extends FrameLayout{
 
     public void setSeparator(String separator) {
         this.separator = separator;
+    }
+
+    public boolean isShowDividers() {
+        return showDividers;
+    }
+
+    public void setShowDividers(boolean showDividers) {
+        this.showDividers = showDividers;
     }
 }
