@@ -26,7 +26,7 @@ public class CalculatorView extends FrameLayout{
     private int buttonsTextSize = 26;
     private int numberLengthLimit = 9;
     private boolean showSpaces = false;
-    private boolean showDividers = false;
+    private boolean showSelectors = false;
 
     public CalculatorView(Context context) {
         super(context);
@@ -60,8 +60,8 @@ public class CalculatorView extends FrameLayout{
             btn.setGravity(Gravity.CENTER);
             btn.setText(values[i]);
             btn.setTag(values[i]);
-            if (showDividers){
-                btn.setBackgroundResource(R.drawable.rectangle);
+            if (showSelectors){
+                btn.setBackgroundResource(R.drawable.bg_selector);
             }
             btn.setOnClickListener(clickListener);
             rows[rowIndex].addView(btn);
@@ -76,17 +76,17 @@ public class CalculatorView extends FrameLayout{
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         params.weight=(float)0.33;
         fl.setLayoutParams(params);
-        if (showDividers){
-            fl.setBackgroundResource(R.drawable.rectangle);
+        if (showSelectors){
+            fl.setBackgroundResource(R.drawable.bg_selector);
         }
+        fl.setTag(values[11]);
+        fl.setOnClickListener(clickListener);
         keyBoardView4Row.addView(fl);
 
         ImageView baksp = new ImageView(context);
         params = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         baksp.setLayoutParams(params);
         baksp.setImageResource(R.drawable.ic_action_backspace);
-        baksp.setTag(values[11]);
-        baksp.setOnClickListener(clickListener);
         fl.addView(baksp);
     }
 
@@ -246,11 +246,11 @@ public class CalculatorView extends FrameLayout{
         this.separator = separator;
     }
 
-    public boolean isShowDividers() {
-        return showDividers;
+    public boolean isShowSelectors() {
+        return showSelectors;
     }
 
-    public void setShowDividers(boolean showDividers) {
-        this.showDividers = showDividers;
+    public void setShowSelectors(boolean showSelectors) {
+        this.showSelectors = showSelectors;
     }
 }
